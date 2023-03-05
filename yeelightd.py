@@ -15,6 +15,7 @@ _poll_time = 10
 
 
 def _set_nice_colour(bulb: yl.Bulb) -> None:
+    bulb.turn_on()
     bulb.set_rgb(0xFF, 0x8A, 0xAA)
     bulb.set_brightness(80)
     bulb.set_color_temp(3200)
@@ -22,11 +23,13 @@ def _set_nice_colour(bulb: yl.Bulb) -> None:
 
 
 def _set_red(bulb: yl.Bulb) -> None:
+    bulb.turn_on()
     bulb.set_rgb(0xFF, 0x00, 0x00)
     bulb.set_brightness(100)
 
 
 def _set_yellow(bulb: yl.Bulb) -> None:
+    bulb.turn_on()
     bulb.set_rgb(0xFF, 0xFF, 0x00)
     bulb.set_brightness(100)
 
@@ -69,6 +72,7 @@ def main():
 
     # create a Yeelight object
     bulb = yl.Bulb(ip)
+    print(bulb)
 
     _last_red = False
 
