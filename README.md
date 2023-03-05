@@ -27,6 +27,7 @@ Update the systemd units in `./systemd_units/` to fit with your code location, t
 so something like:
 
 ```sh
+# Link might be better
 sudo cp ./systemd_units/ /etc/systemd/system
 sudo systemctl enable yeelightd
 sudo systemctl enable yeelightsoff
