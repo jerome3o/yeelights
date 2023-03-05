@@ -19,3 +19,7 @@ This will use the `SSDP` protocol on port 1892 (yeelight's specific SSDP setup) 
 ```sh
 python main.py
 ```
+
+### Automatic on/off (linux only, tested on arch + gnome + xorg)
+
+Update the systemd units in `./systemd_units/` to fit with your code location, then copy them to `/etc/systemd/system`

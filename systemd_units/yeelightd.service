@@ -1,0 +1,11 @@
+[Unit]
+Description=Yeelight automation daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/jerome/source/yeelights/turn_on_daemon.sh
+
+[Install]
+WantedBy=multi-user.target
+

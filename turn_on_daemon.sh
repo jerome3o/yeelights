@@ -8,5 +8,5 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
   source venv/bin/activate
 
   # run script
-  python turn_on.py
+  python yeelightd.py
 )
