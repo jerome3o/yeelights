@@ -40,7 +40,14 @@ def _is_playing_overwatch() -> bool:
     # otherwise, return True
 
     # allow non-zero exit codes
-    output = subprocess.run(["pgrep", "Overwatch"], capture_output=True, check=False).stdout != b""
+    output = (
+        subprocess.run(
+            ["pgrep", "Overwatch"],
+            capture_output=True,
+            check=False,
+        ).stdout
+        != b""
+    )
     return output
 
 
@@ -49,7 +56,10 @@ def main():
     bulbs = yl.discover_bulbs()
 
     # look for IP of bulb with bulbs[i]['capabilities']['name'] == "jerome-pc-led"
-    ip = next((b["ip"] for b in bulbs if b["capabilities"]["name"] == "jerome-pc-led"), None)
+    ip = next(
+        (b["ip"] for b in bulbs if b["capabilities"]["name"] == "jerome-pc-led"),
+        None,
+    )
 
     if ip is None:
         print("Could not find bulb")
