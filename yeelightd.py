@@ -11,6 +11,8 @@ import yeelight as yl
 #     "sat": "45",
 # }
 
+_poll_time = 10
+
 
 def _set_nice_colour(bulb: yl.Bulb) -> None:
     bulb.set_rgb(0xFF, 0x8A, 0xAA)
@@ -71,13 +73,11 @@ def main():
     _last_red = False
 
     while True:
-        _poll_time = 10
         is_playing_overwatch = _is_playing_overwatch()
         is_gettin_late = _is_after_815pm()
 
         if is_playing_overwatch:
             if is_gettin_late:
-                _poll_time = 1
                 if _last_red:
                     _set_yellow(bulb)
                     _last_red = False
