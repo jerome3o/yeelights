@@ -23,3 +23,14 @@ python main.py
 ### Automatic on/off (linux only, tested on arch + gnome + xorg)
 
 Update the systemd units in `./systemd_units/` to fit with your code location, then copy them to `/etc/systemd/system`
+
+so something like:
+
+```sh
+sudo cp ./systemd_units/ /etc/systemd/system
+sudo systemctl enable yeelightd
+sudo systemctl enable yeelightsoff
+sudo systemctl start yeelightd
+sudo systemctl start yeelightsoff
+```
+
