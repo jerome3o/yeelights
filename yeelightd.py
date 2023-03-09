@@ -34,9 +34,9 @@ def _set_yellow(bulb: yl.Bulb) -> None:
     bulb.set_brightness(100)
 
 
-def _is_after_815pm() -> bool:
+def _is_after_830pm() -> bool:
     now = time.localtime()
-    return now.tm_hour == 20 and now.tm_min >= 15
+    return now.tm_hour >= 20 and now.tm_min >= 30
 
 
 def _is_playing_overwatch() -> bool:
@@ -54,6 +54,15 @@ def _is_playing_overwatch() -> bool:
         != b""
     )
     return output
+
+
+def _red_yellow_flash(bulb: yl.Bulb, _last_red: bool) -> bool:
+    if _last_red:
+        _set_yellow(bulb)
+        return False
+
+    _set_red(bulb)
+    return True
 
 
 def main():
@@ -77,23 +86,13 @@ def main():
     _last_red = False
 
     while True:
-        is_playing_overwatch = _is_playing_overwatch()
-        is_gettin_late = _is_after_815pm()
-
-        if is_playing_overwatch:
-            if is_gettin_late:
-                if _last_red:
-                    _set_yellow(bulb)
-                    _last_red = False
-                else:
-                    _set_red(bulb)
-                    _last_red = True
+        if _is_playing_overwatch(bulb):
+            if _is_after_830pm():
+                _last_red = _red_yellow_flash(bulb, _last_red)
             else:
                 _set_red(bulb)
-
         else:
             _set_nice_colour(bulb)
-
         time.sleep(_poll_time)
 
 
