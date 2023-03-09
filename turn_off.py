@@ -1,4 +1,3 @@
-from typing import List
 import yeelight as yl
 
 _NAME = "jerome-pc-led"
