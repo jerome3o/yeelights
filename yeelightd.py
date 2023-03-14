@@ -86,7 +86,7 @@ def main():
     _last_red = False
 
     while True:
-        if _is_playing_overwatch(bulb):
+        if _is_playing_overwatch():
             if _is_after_830pm():
                 _last_red = _red_yellow_flash(bulb, _last_red)
             else:
