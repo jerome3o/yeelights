@@ -79,6 +79,10 @@ def main():
         None,
     )
 
+    if _ip is not None:
+        print("Using IP from environment variable")
+        ip = _ip
+
     if ip is None:
         print("Could not find bulb")
         return
