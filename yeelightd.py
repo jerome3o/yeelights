@@ -1,4 +1,5 @@
 import subprocess
+import os
 import time
 import yeelight as yl
 
@@ -11,6 +12,8 @@ import yeelight as yl
 #     "sat": "45",
 # }
 
+_name = os.environ.get("YEELIGHT_NAME", "Sam")
+_ip = os.environ.get("YEELIGHT_IP", None)
 _poll_time = 10
 
 
@@ -30,7 +33,8 @@ def _set_red(bulb: yl.Bulb) -> None:
 
 def _set_yellow(bulb: yl.Bulb) -> None:
     bulb.turn_on()
-    bulb.set_rgb(0xFF, 0xFF, 0x00)
+    # bulb.set_rgb(0xFF, 0xFF, 0x00)
+    bulb.set_rgb(0x00, 0x00, 0xFF)
     bulb.set_brightness(100)
 
 
@@ -69,9 +73,9 @@ def main():
     # get a list of all the bulbs on the network
     bulbs = yl.discover_bulbs()
 
-    # look for IP of bulb with bulbs[i]['capabilities']['name'] == "jerome-pc-led"
+    # look for IP of bulb with bulbs[i]['capabilities']['name'] == _name
     ip = next(
-        (b["ip"] for b in bulbs if b["capabilities"]["name"] == "jerome-pc-led"),
+        (b["ip"] for b in bulbs if b["capabilities"]["name"] == _name),
         None,
     )
 

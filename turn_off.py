@@ -1,6 +1,6 @@
 import yeelight as yl
 
-_NAME = "jerome-pc-led"
+_NAME = "Sam"
 _IP = "192.168.1.15"
 
 def main():
