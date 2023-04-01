@@ -17,6 +17,11 @@ _ip = os.environ.get("YEELIGHT_IP", None)
 _poll_time = 10
 
 
+def _is_weekend() -> bool:
+    now = time.localtime()
+    return now.tm_wday >= 5
+
+
 def _set_nice_colour(bulb: yl.Bulb) -> None:
     bulb.turn_on()
     bulb.set_rgb(0xFF, 0x8A, 0xAA)
@@ -95,7 +100,7 @@ def main():
 
     while True:
         if _is_playing_overwatch():
-            if _is_after_830pm():
+            if _is_after_830pm() and not _is_weekend():
                 _last_red = _red_yellow_flash(bulb, _last_red)
             else:
                 _set_red(bulb)
