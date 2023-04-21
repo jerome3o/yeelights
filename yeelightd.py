@@ -19,7 +19,8 @@ _poll_time = 10
 
 def _is_weekend() -> bool:
     now = time.localtime()
-    return now.tm_wday >= 5
+    # check if it's friday or saturday
+    return now.tm_wday == 4 or now.tm_wday == 5
 
 
 def _set_nice_colour(bulb: yl.Bulb) -> None:
