@@ -50,6 +50,11 @@ def _is_after_830pm() -> bool:
     return now.tm_hour >= 20 and now.tm_min >= 30
 
 
+def _is_after_10pm() -> bool:
+    now = time.localtime()
+    return now.tm_hour >= 22
+
+
 def _is_playing_overwatch() -> bool:
     # use pgrep to look for processes matching "Overwatch"
     # look at the stdout of the command, if it's empty, return False
@@ -104,7 +109,9 @@ def main():
 
     while True:
         if _is_playing_overwatch():
-            if _is_after_830pm() and not _is_weekend():
+            if (_is_after_830pm() and not _is_weekend()) or (
+                _is_after_10pm() and not _is_weekend()
+            ):
                 _last_red = _red_yellow_flash(bulb, _last_red)
             else:
                 _set_red(bulb)
