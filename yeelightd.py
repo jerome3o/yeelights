@@ -14,6 +14,7 @@ import yeelight as yl
 
 _name = os.environ.get("YEELIGHT_NAME", "Sam")
 _ip = os.environ.get("YEELIGHT_IP", None)
+_lamp_ip = os.environ.get("YEELIGHT_LAMP_IP", None)
 _poll_time = 10
 
 
@@ -95,7 +96,9 @@ def main():
 
     # create a Yeelight object
     bulb = yl.Bulb(ip)
+    lamp = yl.Bulb(_lamp_ip)
     print(bulb)
+    print(lamp)
 
     _last_red = False
 
