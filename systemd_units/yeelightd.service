@@ -7,6 +7,7 @@ Type=simple
 Environment=YEELIGHT_NAME="Sam"
 Environment=YEELIGHT_IP=""
 Environment=YEELIGHT_LAMP_IP=""
+Environment=GITHUB_TOKEN=""
 ExecStart=/home/jerome/source/yeelights/turn_on_daemon.sh
 Restart=always
 RestartSec=10

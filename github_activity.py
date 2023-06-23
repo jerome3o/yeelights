@@ -12,7 +12,6 @@ def has_commited_today(user: str) -> bool:
 
     cookie = """tz=Pacific%2FAuckland"""
 
-    # add cookie tz=Pacific%2FAuckland
     r = requests.get(
         url,
         headers={
