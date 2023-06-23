@@ -10,7 +10,6 @@ access_token = os.getenv("GITHUB_TOKEN")
 def has_commited_today(user: str) -> bool:
     url = f"https://github.com/users/{user}/contributions"
 
-    cookie = """tz=Pacific%2FAuckland; _device_id=cface5253859d37ba88d8bd7d1e4568d; dotcom_user=jerome3o; has_recent_activity=1; preferred_color_mode=dark"""
     cookie = """tz=Pacific%2FAuckland"""
 
     # add cookie tz=Pacific%2FAuckland
