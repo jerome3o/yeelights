@@ -1,14 +1,26 @@
+import os
 import datetime
 import requests
 
 from bs4 import BeautifulSoup
 
+access_token = os.getenv("GITHUB_TOKEN")
+
 
 def has_commited_today(user: str) -> bool:
     url = f"https://github.com/users/{user}/contributions"
 
+    cookie = """tz=Pacific%2FAuckland; _device_id=cface5253859d37ba88d8bd7d1e4568d; dotcom_user=jerome3o; has_recent_activity=1; preferred_color_mode=dark"""
+    cookie = """tz=Pacific%2FAuckland"""
+
     # add cookie tz=Pacific%2FAuckland
-    r = requests.get(url, headers={"Cookie": "tz=Pacific%2FAuckland"})
+    r = requests.get(
+        url,
+        headers={
+            "Cookie": cookie,
+            "Authorization": f"bearer {access_token}",
+        },
+    )
 
     # handle error
     if r.status_code != 200:
@@ -20,5 +32,16 @@ def has_commited_today(user: str) -> bool:
     today = datetime.datetime.now().strftime("%Y-%m-%d")
 
     # get tr element with data-date=today
-    todays_contrib = soup.find("rect", {"data-date": today}).attrs["data-level"]
+    todays_contrib = soup.find("rect", {"data-date": today}).get("data-level")
     return todays_contrib != "0"
+
+
+def main():
+    print(has_commited_today("jerome3o"))
+
+
+if __name__ == "__main__":
+    import logging
+
+    logging.basicConfig(level=logging.INFO)
+    main()
