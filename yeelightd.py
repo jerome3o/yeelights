@@ -131,7 +131,7 @@ def main():
                     _set_nice_colour(bulb)
                     lamp.turn_on()
                 else:
-                    _set_meh_colour(bulb)
+                    _set_red(bulb)
         time.sleep(_poll_time)
 
 
