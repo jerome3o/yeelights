@@ -10,6 +10,8 @@ Before=shutdown.target
 Type=oneshot
 User=jerome
 Group=jerome
+Environment=YEELIGHT_IP=""
+Environment=YEELIGHT_LAMP_IP=""
 ExecStart=/home/jerome/source/yeelights/turn_off.sh
 
 [Install]
