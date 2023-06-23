@@ -1,6 +1,7 @@
-import requests
-from bs4 import BeautifulSoup
 import datetime
+import requests
+
+from bs4 import BeautifulSoup
 
 
 def has_commited_today(user: str) -> bool:

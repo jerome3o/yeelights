@@ -3,6 +3,8 @@ import os
 import time
 import yeelight as yl
 
+from github_activity import has_commited_today
+
 # Liv chose this colour bc she likes it
 # {
 #     "rgb": "16747178",
@@ -15,6 +17,7 @@ import yeelight as yl
 _name = os.environ.get("YEELIGHT_NAME", "Sam")
 _ip = os.environ.get("YEELIGHT_IP", None)
 _lamp_ip = os.environ.get("YEELIGHT_LAMP_IP", None)
+_username = os.environ.get("GITHUB_USERNAME", "jerome3o")
 _poll_time = 10
 
 
@@ -30,6 +33,13 @@ def _set_nice_colour(bulb: yl.Bulb) -> None:
     bulb.set_brightness(80)
     bulb.set_color_temp(3200)
     bulb.set_hsv(344, 45)
+
+
+def _set_meh_colour(bulb: yl.Bulb) -> None:
+    bulb.turn_on()
+    bulb.set_rgb(0xFF, 0xFF, 0x0)
+    bulb.set_brightness(80)
+    bulb.set_color_temp(3200)
 
 
 def _set_red(bulb: yl.Bulb) -> None:
@@ -109,14 +119,18 @@ def main():
 
     while True:
         if _is_playing_overwatch():
-            if (_is_after_830pm() and not _is_weekend()) or (
-                _is_after_10pm() and not _is_weekend()
-            ):
+            if _is_after_830pm() and not _is_weekend():
                 _last_red = _red_yellow_flash(bulb, _last_red)
             else:
                 _set_red(bulb)
         else:
-            _set_nice_colour(bulb)
+            if _is_after_10pm() and not _is_weekend():
+                _last_red = _red_yellow_flash(bulb, _last_red)
+            else:
+                if has_commited_today(_username):
+                    _set_nice_colour(bulb)
+                else:
+                    _set_meh_colour(bulb)
         time.sleep(_poll_time)
 
 
