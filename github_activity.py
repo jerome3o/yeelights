@@ -21,14 +21,3 @@ def has_commited_today(user: str) -> bool:
     # get tr element with data-date=today
     todays_contrib = soup.find("rect", {"data-date": today}).attrs["data-level"]
     return todays_contrib != "0"
-
-
-def main():
-    print(has_commited_today("jerome3o"))
-
-
-if __name__ == "__main__":
-    import logging
-
-    logging.basicConfig(level=logging.INFO)
-    main()
