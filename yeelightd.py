@@ -132,6 +132,7 @@ def main():
                     lamp.turn_on()
                 else:
                     _set_red(bulb)
+                    lamp.turn_off()
         time.sleep(_poll_time)
 
 
