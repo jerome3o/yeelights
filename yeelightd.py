@@ -51,7 +51,7 @@ def _set_red(bulb: yl.Bulb) -> None:
 def _set_yellow(bulb: yl.Bulb) -> None:
     bulb.turn_on()
     # bulb.set_rgb(0xFF, 0xFF, 0x00)
-    bulb.set_rgb(0x00, 0x00, 0xFF)
+    bulb.set_rgb(0xFF, 0xFF, 0x00)
     bulb.set_brightness(100)
 
 
