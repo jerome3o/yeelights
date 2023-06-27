@@ -17,6 +17,7 @@ def has_commited_today(user: str) -> bool:
         headers={
             "Cookie": cookie,
             "Authorization": f"bearer {access_token}",
+            "Cache-Control": "no-cache",
         },
     )
 
