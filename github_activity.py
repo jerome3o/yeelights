@@ -31,7 +31,8 @@ def has_commited_today(user: str) -> bool:
     today = datetime.datetime.now().strftime("%Y-%m-%d")
 
     # get tr element with data-date=today
-    todays_contrib = soup.find("rect", {"data-date": today}).get("data-level")
+    tr_element = soup.find(None, {"data-date": today})
+    todays_contrib = tr_element.get("data-level")
     return todays_contrib != "0"
 
 
