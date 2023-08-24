@@ -129,10 +129,10 @@ def main():
             else:
                 if has_commited_today(_username):
                     _set_nice_colour(bulb)
-                    lamp.turn_on()
+                    # lamp.turn_on()
                 else:
                     _set_red(bulb)
-                    lamp.turn_off()
+                    # lamp.turn_off()
         time.sleep(_poll_time)
 
 
